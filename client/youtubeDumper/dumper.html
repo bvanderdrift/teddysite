@@ -1,0 +1,20 @@
+<template name="dumper">
+
+<head>
+<title>The Most Hip Youtube Dumper</title>
+</head>
+
+<body>
+<form id="ytdumpform">
+	Youtube Link to Dump: <input type="url" name="youtubeLink" />
+</form>
+
+<ul>
+	{{#each links}}
+	<li><a href="{{pathFor route='ytvideo'}}">{{videoid}}</a></li>
+	{{/each}}
+</ul>
+
+</body>
+
+</template>
