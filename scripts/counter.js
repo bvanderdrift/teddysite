@@ -1,11 +1,11 @@
 if (Meteor.isClient) {
   Template.counter.onCreated(() => {
-    Template.instance().subscribe('counter');
+    Template.instance().subscribe('counter', Meteor.userId());
   });
 
   Template.counter.helpers({
     count: function () {
-      var singleCounter = counter.findOne();
+      var singleCounter = counter.findOne({userId: ""});
 
       if(singleCounter){
         return singleCounter.count;
@@ -17,21 +17,46 @@ if (Meteor.isClient) {
 
   Template.counter.events({
     'click #addCount': function () {
-      Meteor.call('incrementCount', function(error){
+      increment("");
+
+      if(Meteor.user()){
+        increment(Meteor.userId());
+      }
+    }
+  });
+
+  Template.loggedinCounter.helpers({
+      personalCount: function(){
+        var uCount = counter.findOne({userId: Meteor.userId()});
+
+        if(!uCount){
+          Meteor.call('newCount', Meteor.userId(), function(err){
+            console.log(err);
+          });
+
+          return "...";
+        }
+
+        return uCount.count;
+      }
+  });
+
+  increment = function(userId){
+    Meteor.call('incrementCount', userId,function(error){
         if(error){
           console.log(error);
         }else{
           analytics.track("Incremented Counter", {
-            newCount: counter.findOne().count
+            userId: userId,
+            newCount: counter.findOne({userId: userId}).count
           });
         }
-      })
-    }
-  });
+      });
+  };
 }
 
 if (Meteor.isServer) {
-  if(counter.find().count() == 0){
-    counter.insert({count: 0});
+  if(counter.find({userId: ""}).count() == 0){
+    counter.insert({count: 0, userId: ""});
   }
 }

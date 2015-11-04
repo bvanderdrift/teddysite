@@ -1,5 +1,7 @@
-Meteor.publish('counter', () => {
-	return counter.find();
+Meteor.publish('counter', (userId) => {
+	check(userId, String);
+
+	return counter.find({userId: { $in : ["", userId]}});
 });
 
 Meteor.publish('ytlinks', () => {

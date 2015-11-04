@@ -5,9 +5,17 @@
 	</head>
 
 	<body>
-	  <button id="addCount">Click Me</button>
+		<button id="addCount">Click Me</button>
 
-	  <p>You've pressed the button {{count}} times.</p>
+		<p>Teh button has been pressed {{count}} times.</p>
+
+		{{#if currentUser}}
+			{{> loggedinCounter}}
+		{{/if}}
 	</body>
 	
+</template>
+
+<template name="loggedinCounter">
+	<p>You have pressed the button {{personalCount}} times.</p>
 </template>
