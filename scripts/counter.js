@@ -1,4 +1,8 @@
 if (Meteor.isClient) {
+  Template.counter.onCreated(() => {
+    Template.instance().subscribe('counter');
+  });
+
   Template.counter.helpers({
     count: function () {
       var singleCounter = counter.findOne();
