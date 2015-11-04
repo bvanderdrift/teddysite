@@ -1,4 +1,8 @@
 if(Meteor.isClient){
+	Template.dumper.onCreated(() => {
+		Template.instance().subscribe('ytlinks');
+	});
+
 	Template.dumper.helpers({
 		links: function(){
 			return links.find();
@@ -19,9 +23,7 @@ if(Meteor.isClient){
 			}
 
 			if(links.find({link: yturl}).count() == 0){
-				links.insert({
-					videoid: videoid[1]
-				});
+				Meteor.call('dumpVideo', videoid[1]);
 			}
 		}
 	});
