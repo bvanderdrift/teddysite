@@ -1,2 +1,5 @@
 # Ignore all the thumbnail cache files
 Thumbs.db
+
+# Always ignore the production settings
+settings-production.json
