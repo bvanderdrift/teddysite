@@ -1,5 +1,3 @@
-links = new Meteor.Collection("ytlinks");
-
 if(Meteor.isClient){
 	Template.dumper.helpers({
 		links: function(){

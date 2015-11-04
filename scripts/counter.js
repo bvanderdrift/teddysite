@@ -1,5 +1,3 @@
-counter = new Mongo.Collection("counter");
-
 if (Meteor.isClient) {
   Template.counter.helpers({
     count: function () {
