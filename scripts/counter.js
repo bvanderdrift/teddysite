@@ -7,14 +7,17 @@ if (Meteor.isClient) {
         return singleCounter.count;
       }else{
         return "...";
-      }
-      
+      } 
     }
   });
 
   Template.counter.events({
     'click #addCount': function () {
-      counter.update({_id: counter.findOne()._id}, {$inc: {count: 1}});
+      Meteor.call('incrementCount', function(error){
+        if(error){
+          console.log(error);
+        }
+      })
     }
   });
 }
