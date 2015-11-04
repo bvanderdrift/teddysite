@@ -14,7 +14,6 @@ if (Meteor.isClient) {
 
   Template.counter.events({
     'click #addCount': function () {
-      console.log("Upped!");
       counter.update({_id: counter.findOne()._id}, {$inc: {count: 1}});
     }
   });
