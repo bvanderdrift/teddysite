@@ -22,8 +22,11 @@ if(Meteor.isClient){
 				return;
 			}
 
-			if(links.find({link: yturl}).count() == 0){
+			if(links.find({videoid: videoid[1]}).count() == 0){
 				Meteor.call('dumpVideo', videoid[1]);
+				analytics.track('Dumped Video', {
+					videoid: videoid[1]
+				});
 			}
 		}
 	});

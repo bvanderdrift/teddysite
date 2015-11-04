@@ -4,6 +4,8 @@ Meteor.methods({
 	},
 
 	dumpVideo: function(ytVideoiD){
+		check(ytVideoiD, String);
+
 		links.insert({
 			videoid: ytVideoiD
 		});
