@@ -16,6 +16,10 @@ if (Meteor.isClient) {
       Meteor.call('incrementCount', function(error){
         if(error){
           console.log(error);
+        }else{
+          analytics.track("Incremented Counter", {
+            newCount: counter.findOne().count
+          });
         }
       })
     }
