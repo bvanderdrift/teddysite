@@ -19,8 +19,8 @@ Meteor.methods({
 		if(counter.find({userId: userId}).count == 0){
 			counter.insert({
 				count:0, userId: userId
-			}
-		});
+			});
+		}
 	},
 
 	removeAllCounters: function(){
