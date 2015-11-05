@@ -12,7 +12,15 @@ Router.route("/counter", {
 });
 Router.route("/chatter", {
 	name: 'chatter',
-	template: 'chatter'
+	template: 'chatter',
+	before: function(){
+		if(!Meteor.user()){
+			this.redirect('home');
+			this.stop();
+		}else{
+			this.render('chatter');
+		}
+	}
 });
 Router.route("/dumper", {
 	name: 'dumper',
