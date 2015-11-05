@@ -15,7 +15,7 @@ if(Meteor.isClient){
 			var yturl = $('[name=youtubeLink').val();
 			var videoid = yturl.match(/youtube\.com\/watch\?v=(.*)/);
 			
-			$('[name=youtubeLink').val('');
+			$('[name=youtubeLink]').val('');
 
 			if(!videoid || videoid[1] == ''){
 				alert('Not a Youtube Video!');
