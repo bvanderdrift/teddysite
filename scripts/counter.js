@@ -33,7 +33,9 @@ if (Meteor.isClient) {
 
         if(!uCount){
           Meteor.call('newCount', Meteor.userId(), function(err){
-            console.log(err);
+            if(err){
+              console.log(err);
+            }
           });
 
           return "...";
