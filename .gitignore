@@ -6,3 +6,6 @@ settings-production.json
 
 # Ignore customs scripts
 *.bat
+
+# Ignore mup json
+mup.json
