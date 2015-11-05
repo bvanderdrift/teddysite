@@ -16,8 +16,10 @@ Meteor.methods({
 	newCount: function(userId){
 		check(userId, String);
 
-		counter.insert({
-			count:0, userId: userId
+		if(counter.find({userId: userId}).count == 0){
+			counter.insert({
+				count:0, userId: userId
+			}
 		});
 	},
 
