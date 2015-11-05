@@ -12,7 +12,7 @@ if(Meteor.isClient){
 	Template.dumper.events({
 		'submit #ytdumpform': function(e){
 			e.preventDefault();
-			var yturl = $('[name=youtubeLink').val();
+			var yturl = $('[name=youtubeLink]').val();
 			var videoid = yturl.match(/youtube\.com\/watch\?v=(.*)/);
 			
 			$('[name=youtubeLink]').val('');
