@@ -23,5 +23,9 @@ Meteor.methods({
 
 	removeAllCounters: function(){
 		counter.remove({});
+	},
+
+	clientConnected: function(){
+		checkInitiateCounter("");
 	}
 });

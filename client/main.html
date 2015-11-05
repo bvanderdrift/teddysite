@@ -5,7 +5,12 @@
 {{> loginButtons}}
 
 <hr />
-Links: <a href="{{pathFor route='home'}}">Home</a> || <a href="{{pathFor route='counter'}}">Counter</a> || <a href="{{pathFor route='chatter'}}">Chatter</a> || <a href="{{pathFor route='dumper'}}">Youtube Dumper</a> 
+Links: <a href="{{pathFor route='home'}}">Home</a> || 
+<a href="{{pathFor route='counter'}}">Counter</a> || 
+{{#if currentUser}}
+	<a href="{{pathFor route='chatter'}}">Chatter</a> || 
+{{/if}}
+<a href="{{pathFor route='dumper'}}">Youtube Dumper</a> 
 <hr />
 {{> yield}}
 <hr />
