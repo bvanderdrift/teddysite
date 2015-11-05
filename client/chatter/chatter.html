@@ -5,6 +5,24 @@
 
 	<body>
 	<h1>Chatter</h1>
-	This is where the chatter will be.
+
+	<div id="chatBox">
+		<div id="messages">
+			{{#each messages}}
+				{{> message}} <br />
+			{{/each}}
+		</div>
+
+		<div id="postMessage">
+			<form>
+				<input type="text" name="messageTextBox"/>
+			</form>
+		</div>
+	</div>
+
 	</body>
+</template>
+
+<template name="message">
+{{sender.username}}: {{message}} 
 </template>
