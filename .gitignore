@@ -3,3 +3,6 @@ Thumbs.db
 
 # Always ignore the production settings
 settings-production.json
+
+# Ignore customs scripts
+*.bat
