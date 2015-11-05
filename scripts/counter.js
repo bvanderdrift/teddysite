@@ -77,7 +77,6 @@ if (Meteor.isServer) {
   };
 
   Accounts.onLogin((param) => {
-      console.log(param.user._id);
       checkInitiateCounter(param.user._id);
   });
 }
