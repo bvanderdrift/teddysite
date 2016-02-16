@@ -33,3 +33,7 @@ Router.route("/ytvideo/:_id", {
 		return links.findOne({_id: this.params._id});
 	}
 });
+Router.route("/trellotool", {
+	name: 'trellotool',
+	template: 'trellotool'
+});
