@@ -21,7 +21,16 @@ var loadLists = function(id){
 var processNewUser = function(userid){
 	trelloUsers._collection.insert({
 		uid: userid,
+		name: "...",
 		todos: []
+	});
+
+	var member = trelloUsers.findOne({uid: userid});
+
+	Trello.get("/members/" + userid, function(data){
+		trelloUsers._collection.update(member._id, {
+			$set: {name: data.fullName}
+		});
 	});
 }
 
