@@ -9,3 +9,6 @@ settings-production.json
 
 # Ignore mup json
 mup.json
+
+# Ignore trello api key&secret
+trelloapiaccess.json
