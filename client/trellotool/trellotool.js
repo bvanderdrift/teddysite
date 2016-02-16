@@ -10,6 +10,14 @@ var loadBoards = function(){
 	});
 }
 
+var loadLists = function(id){
+	Trello.get("/boards/" + id + "/lists", function(data){
+		data.forEach(function(el){
+			lists._collection.insert(el);
+		});
+	});
+}
+
 Template.trellotool.helpers({
 	ApiKey: function(){
 		return TrelloApiKey;
@@ -19,6 +27,9 @@ Template.trellotool.helpers({
 	},
 	Boards: function(){
 		return boards.find({});
+	},
+	Lists: function(){
+		return lists.find({});
 	}
 });
 
@@ -41,5 +52,12 @@ Template.trellotool.events({
 			success: updateAuth,
 			error: updateAuth
 		})
+	},
+	"click .boardbtn": function(ev){
+		loadLists(ev.target.id);
+		boards._collection.remove({});
+	},
+	"click .listbtn": function(ev){
+		//todo
 	}
 });

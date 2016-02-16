@@ -9,7 +9,14 @@
 
 	<ul>
 	{{#each Boards}}
-	<li>{{name}}</li>
+		<li>
+			<button class="boardbtn" id="{{id}}">{{name}}</button>
+		</li>
+	{{/each}}
+	{{#each Lists}}
+		<li>
+			<button class="listbtn" id="{{id}}">{{name}}</button>
+		</li>
 	{{/each}}
 	</ul>
 </template>
