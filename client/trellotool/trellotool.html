@@ -19,4 +19,13 @@
 		</li>
 	{{/each}}
 	</ul>
+
+	{{#each TrelloUsers}}
+	<p><b>{{uid}}</b></p>
+	<ul>
+		{{#each todos}}
+			<li>{{todo}}</li>
+		{{/each}}
+	</ul>
+	{{/each}}
 </template>

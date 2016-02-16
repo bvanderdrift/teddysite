@@ -1,6 +1,6 @@
 boards = new Mongo.Collection("boards");
 lists = new Mongo.Collection("lists");
-cards = new Mongo.Collection("cards");
+trelloUsers = new Mongo.Collection("trelloUsers");
 
 var loadBoards = function(){
 	Trello.get("/members/me/boards", function(data){
@@ -18,6 +18,37 @@ var loadLists = function(id){
 	});
 }
 
+var processNewUser = function(userid){
+	trelloUsers._collection.insert({
+		uid: userid,
+		todos: []
+	});
+}
+
+var processCard = function(card){
+	var members = card.idMembers;
+
+	members.forEach(function(el){
+		var member = trelloUsers.findOne({uid: el});
+
+		if(member == null){
+			processNewUser(el);
+			member = trelloUsers.findOne({uid: el});
+		}
+
+		member.todos.push({todo: card.name});
+		trelloUsers._collection.update(member._id, {
+			$set: {todos: member.todos}
+		});
+	});
+}
+
+var loadCards = function(listid){
+	Trello.get("lists/" + listid + "/cards", function(data){
+		data.forEach(processCard);
+	}); 
+}
+
 Template.trellotool.helpers({
 	ApiKey: function(){
 		return TrelloApiKey;
@@ -30,6 +61,9 @@ Template.trellotool.helpers({
 	},
 	Lists: function(){
 		return lists.find({});
+	},
+	TrelloUsers: function(){
+		return trelloUsers.find({});
 	}
 });
 
@@ -58,6 +92,7 @@ Template.trellotool.events({
 		boards._collection.remove({});
 	},
 	"click .listbtn": function(ev){
-		//todo
+		loadCards(ev.target.id);
+		lists._collection.remove({});
 	}
 });
