@@ -6,4 +6,10 @@
 	{{#unless Authorized}}
 	<button class="trelloauth">Authenticate with Trello</button>
 	{{/unless}}
+
+	<ul>
+	{{#each Boards}}
+	<li>{{name}}</li>
+	{{/each}}
+	</ul>
 </template>
