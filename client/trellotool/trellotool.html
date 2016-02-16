@@ -2,4 +2,8 @@
 	<head>
 	<script src="https://api.trello.com/1/client.js?key={{ApiKey}}"></script>
 	</head>
+
+	{{#unless Authorized}}
+	<button class="trelloauth">Authenticate with Trello</button>
+	{{/unless}}
 </template>
