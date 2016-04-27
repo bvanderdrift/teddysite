@@ -1,0 +1,1 @@
+{"version":3,"sources":["meteor://💻app/scripts/accounts.js"],"names":[],"mappings":";;;;;;;;AAAA,IAAG,MAAM,CAAC,QAAQ,EAAC;AAClB,SAAQ,CAAC,EAAE,CAAC,MAAM,CAAC;AAClB,sBAAoB,EAAE,eAAe;EACrC,CAAC,CAAC;CACH,wE","file":"/scripts/accounts.js","sourcesContent":["if(Meteor.isClient){\n\tAccounts.ui.config({\n\t\tpasswordSignupFields: \"USERNAME_ONLY\"\n\t});\n}"]}
